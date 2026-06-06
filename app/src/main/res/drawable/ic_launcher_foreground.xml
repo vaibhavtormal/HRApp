@@ -1,0 +1,94 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="140"
+    android:viewportHeight="140">
+
+    <!-- Group to center and scale our 100x100 logo inside 140x140 space (giving 20dp padding) -->
+    <group
+        android:translateX="20"
+        android:translateY="20">
+
+        <!-- Hexagonal outer premium shield border -->
+        <path
+            android:strokeWidth="4"
+            android:strokeLineJoin="round"
+            android:pathData="M50,8 L88,30 L88,70 L50,92 L12,70 L12,30 Z">
+            <aapt:attr name="android:strokeColor">
+                <gradient
+                    android:startX="12"
+                    android:startY="8"
+                    android:endX="88"
+                    android:endY="92"
+                    android:type="linear">
+                    <item android:offset="0.0" android:color="#7C3AED" />
+                    <item android:offset="0.5" android:color="#06B6D4" />
+                    <item android:offset="1.0" android:color="#F59E0B" />
+                </gradient>
+            </aapt:attr>
+        </path>
+
+        <!-- Semi-transparent hexagonal inner glow/accent -->
+        <path
+            android:fillType="nonZero"
+            android:pathData="M50,15 L82,34 L82,66 L50,85 L18,66 L18,34 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient
+                    android:startX="18"
+                    android:startY="15"
+                    android:endX="82"
+                    android:endY="85"
+                    android:type="linear">
+                    <item android:offset="0.0" android:color="#267C3AED" />
+                    <item android:offset="1.0" android:color="#2606B6D4" />
+                </gradient>
+            </aapt:attr>
+        </path>
+
+        <!-- Stylized connection nodes representing HR/Workspace -->
+        <path
+            android:strokeWidth="5"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M35,35 L50,50 L65,35 M35,65 L50,50 L65,65">
+            <aapt:attr name="android:strokeColor">
+                <gradient
+                    android:startX="35"
+                    android:startY="35"
+                    android:endX="65"
+                    android:endY="65"
+                    android:type="linear">
+                    <item android:offset="0.0" android:color="#06B6D4" />
+                    <item android:offset="1.0" android:color="#7C3AED" />
+                </gradient>
+            </aapt:attr>
+        </path>
+
+        <!-- Premium stylized gold "S" logo structure in center -->
+        <path
+            android:strokeWidth="5"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M 38,30 C 45,22 55,22 62,30 C 70,38 55,45 50,50 C 45,55 30,62 38,70 C 45,78 55,78 62,70">
+            <aapt:attr name="android:strokeColor">
+                <gradient
+                    android:startX="38"
+                    android:startY="22"
+                    android:endX="62"
+                    android:endY="78"
+                    android:type="linear">
+                    <item android:offset="0.0" android:color="#F59E0B" />
+                    <item android:offset="1.0" android:color="#FDE047" />
+                </gradient>
+            </aapt:attr>
+        </path>
+
+        <!-- Center core node -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M50,50m-3,0a3,3 0 1,0 6,0a3,3 0 1,0 -6,0" />
+
+    </group>
+
+</vector>

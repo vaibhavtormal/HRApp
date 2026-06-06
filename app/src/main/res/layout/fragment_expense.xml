@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:padding="16dp">
+
+    <!-- Header Section -->
+    <TextView
+        android:id="@+id/text_expense_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Expense Tracker"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Claims Summary Card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_expense_summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="3dp"
+        app:cardBackgroundColor="@color/surface_dark"
+        app:layout_constraintTop_toBottomOf="@id/text_expense_title">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REIMBURSEMENT METRICS"
+                android:textColor="@color/text_sub_dark"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <!-- Approved sum -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/text_total_approved"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₹ 0.00"
+                        android:textColor="@color/success_green"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Approved Claims"
+                        android:textColor="@color/text_sub_dark"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <!-- Pending sum -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/text_total_pending"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₹ 0.00"
+                        android:textColor="@color/warning_orange"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Pending Claims"
+                        android:textColor="@color/text_sub_dark"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Trigger actions (Add Expense / PDF Report) -->
+    <LinearLayout
+        android:id="@+id/layout_expense_actions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintTop_toBottomOf="@id/card_expense_summary">
+
+        <Button
+            android:id="@+id/btn_add_expense"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1.1"
+            android:layout_marginEnd="6dp"
+            android:backgroundTint="@color/primary"
+            android:text="+ Log Expense"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:cornerRadius="12dp" />
+
+        <Button
+            android:id="@+id/btn_download_report"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="0.9"
+            android:layout_marginStart="6dp"
+            android:text="Download PDF"
+            android:textColor="@color/white"
+            app:strokeColor="@color/border_dark"
+            app:cornerRadius="12dp" />
+    </LinearLayout>
+
+    <!-- Expense Logs list -->
+    <TextView
+        android:id="@+id/text_logs_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="MY EXPENSE CLAIMS"
+        android:textColor="@color/text_sub_dark"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.1"
+        app:layout_constraintTop_toBottomOf="@id/layout_expense_actions"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_expenses"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/text_design_by"
+        app:layout_constraintTop_toBottomOf="@id/text_logs_label"
+        tools:listitem="@layout/item_expense" />
+
+    <!-- Design By Footer -->
+    <TextView
+        android:id="@+id/text_design_by"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Designed with ♥ by Vaibhav Tormal"
+        android:textSize="11sp"
+        android:letterSpacing="0.06"
+        android:textColor="#80FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="72dp"
+    />
+
+    <!-- Empty State -->
+    <LinearLayout
+        android:id="@+id/layout_empty_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_logs_label">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No expenses logged for reimbursement."
+            android:textColor="@color/text_sub_dark"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

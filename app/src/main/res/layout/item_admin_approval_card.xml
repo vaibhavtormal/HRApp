@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/surface_dark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Employee Info -->
+        <TextView
+            android:id="@+id/text_appr_emp_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Employee Name (ID: EMP102)"
+            android:textColor="@color/primary_light"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <!-- Request specifics -->
+        <TextView
+            android:id="@+id/text_appr_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Leave Category / Category Name"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_appr_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Dates: 05 Jun to 08 Jun | Duration: 3 Days"
+            android:textColor="@color/text_main_dark"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/text_appr_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Reason/Desc: Corporate fuel refill claim."
+            android:textColor="@color/text_sub_dark"
+            android:textSize="11sp" />
+
+        <!-- View Document Button (Admin) -->
+        <TextView
+            android:id="@+id/btn_appr_view_attachment"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/badge_role_employee"
+            android:backgroundTint="@color/border_dark"
+            android:gravity="center"
+            android:text="📎 View Document Attachment"
+            android:textColor="@color/primary_light"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone" />
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <!-- Reject Button -->
+            <Button
+                android:id="@+id/btn_appr_reject"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                android:backgroundTint="#2D1C1C"
+                android:text="Reject"
+                android:textColor="@color/danger_red"
+                android:textStyle="bold"
+                app:cornerRadius="10dp" />
+
+            <!-- Approve Button -->
+            <Button
+                android:id="@+id/btn_appr_approve"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:backgroundTint="@color/success_green"
+                android:text="Approve"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:cornerRadius="10dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

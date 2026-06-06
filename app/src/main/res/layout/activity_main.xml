@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- Fragment Container -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav_card"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Floating Custom Bottom Nav Bar (iPhone Style) -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bottom_nav_card"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_glass_bottom_nav"
+            android:weightSum="5">
+
+            <!-- Tab 1: Dashboard -->
+            <LinearLayout
+                android:id="@+id/tab_dashboard"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="?android:attr/selectableItemBackgroundBorderless">
+                <ImageView
+                    android:id="@+id/icon_dashboard"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_dashboard"
+                    app:tint="@color/primary_light" />
+                <TextView
+                    android:id="@+id/text_dashboard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Home"
+                    android:textSize="10sp"
+                    android:textColor="@color/primary_light"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Tab 2: History -->
+            <LinearLayout
+                android:id="@+id/tab_history"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="?android:attr/selectableItemBackgroundBorderless">
+                <ImageView
+                    android:id="@+id/icon_history"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_history"
+                    app:tint="@color/text_sub_dark" />
+                <TextView
+                    android:id="@+id/text_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="History"
+                    android:textSize="10sp"
+                    android:textColor="@color/text_sub_dark" />
+            </LinearLayout>
+
+            <!-- Tab 3: Leaves -->
+            <LinearLayout
+                android:id="@+id/tab_leaves"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="?android:attr/selectableItemBackgroundBorderless">
+                <ImageView
+                    android:id="@+id/icon_leaves"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_leave"
+                    app:tint="@color/text_sub_dark" />
+                <TextView
+                    android:id="@+id/text_leaves"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Leaves"
+                    android:textSize="10sp"
+                    android:textColor="@color/text_sub_dark" />
+            </LinearLayout>
+
+            <!-- Tab 4: Expenses -->
+            <LinearLayout
+                android:id="@+id/tab_expenses"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="?android:attr/selectableItemBackgroundBorderless">
+                <ImageView
+                    android:id="@+id/icon_expenses"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_expense"
+                    app:tint="@color/text_sub_dark" />
+                <TextView
+                    android:id="@+id/text_expenses"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expense"
+                    android:textSize="10sp"
+                    android:textColor="@color/text_sub_dark" />
+            </LinearLayout>
+
+            <!-- Tab 5: Settings -->
+            <LinearLayout
+                android:id="@+id/tab_settings"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="?android:attr/selectableItemBackgroundBorderless">
+                <ImageView
+                    android:id="@+id/icon_settings"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_settings"
+                    app:tint="@color/text_sub_dark" />
+                <TextView
+                    android:id="@+id/text_settings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="More"
+                    android:textSize="10sp"
+                    android:textColor="@color/text_sub_dark" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

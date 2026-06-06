@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:padding="16dp">
+
+    <!-- Header -->
+    <TextView
+        android:id="@+id/text_learn_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Video Training Library"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Mock YouTube Player Panel -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_player"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="12dp"
+        android:visibility="gone"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@color/surface_dark"
+        app:layout_constraintTop_toBottomOf="@id/text_learn_title">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_player_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:alpha="0.3"
+                android:src="@drawable/ic_launcher_background" />
+
+            <!-- Close player button -->
+            <ImageView
+                android:id="@+id/btn_close_player"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="12dp"
+                android:src="@drawable/ic_check_circle"
+                app:tint="@color/white"
+                android:rotation="45"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <!-- Play/Pause Controls Overlay -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/btn_play_pause_video"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/ic_play"
+                    app:tint="@color/white"
+                    android:clickable="true"
+                    android:focusable="true" />
+            </LinearLayout>
+
+            <!-- Video Timeline slider -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/text_player_video_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Playing: Company Values Video"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <SeekBar
+                    android:id="@+id/player_seekbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:progressTint="@color/primary_light"
+                    android:thumbTint="@color/primary_light"
+                    android:max="100"
+                    android:progress="35" />
+
+                <TextView
+                    android:id="@+id/text_player_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="8dp"
+                    android:text="01:45 / 05:00"
+                    android:textColor="@color/text_sub_dark"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Search Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_search_layout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="Search training videos..."
+        app:hintTextColor="@color/primary_light"
+        app:boxStrokeColor="@color/border_dark"
+        app:startIconDrawable="@drawable/ic_search"
+        app:startIconTint="@color/text_sub_dark"
+        app:layout_constraintTop_toBottomOf="@id/card_player"
+        app:layout_goneMarginTop="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_search_videos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Categories Filter Chips List -->
+    <LinearLayout
+        android:id="@+id/layout_categories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/input_search_layout">
+
+        <TextView
+            android:id="@+id/chip_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/badge_role_admin"
+            android:paddingStart="12dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="6dp"
+            android:text="All"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <TextView
+            android:id="@+id/chip_culture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/badge_role_employee"
+            android:paddingStart="12dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="6dp"
+            android:text="Culture"
+            android:textColor="@color/text_main_dark"
+            android:textSize="12sp"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <TextView
+            android:id="@+id/chip_training"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/badge_role_employee"
+            android:paddingStart="12dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="6dp"
+            android:text="Training"
+            android:textColor="@color/text_main_dark"
+            android:textSize="12sp"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <TextView
+            android:id="@+id/chip_hr_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/badge_role_employee"
+            android:paddingStart="12dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="6dp"
+            android:text="HR Help"
+            android:textColor="@color/text_main_dark"
+            android:textSize="12sp"
+            android:clickable="true"
+            android:focusable="true"/>
+    </LinearLayout>
+
+    <!-- Videos list recycler -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_learning_videos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/text_design_by"
+        app:layout_constraintTop_toBottomOf="@id/layout_categories"
+        tools:listitem="@layout/item_learning_video" />
+
+    <!-- Design By Footer -->
+    <TextView
+        android:id="@+id/text_design_by"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Designed with ♥ by Vaibhav Tormal"
+        android:textSize="11sp"
+        android:letterSpacing="0.06"
+        android:textColor="#80FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="72dp"
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

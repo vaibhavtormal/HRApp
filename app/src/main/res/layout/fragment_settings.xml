@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:padding="16dp">
+
+    <!-- Header Section -->
+    <TextView
+        android:id="@+id/text_settings_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile &amp; Settings"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_settings_title">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Employee Profile Summary Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/surface_dark"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="EMPLOYEE PROFILE CARD"
+                        android:textColor="@color/text_sub_dark"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.1" />
+
+                    <!-- Main identity details -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/card_settings_photo"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            app:cardCornerRadius="30dp"
+                            app:cardBackgroundColor="@color/border_dark"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?android:attr/selectableItemBackground">
+                            <ImageView
+                                android:id="@+id/img_settings_photo"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ic_admin" />
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/text_profile_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Vaibhav Tormal"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/text_profile_id"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ID: EMP102"
+                                android:textColor="@color/primary_light"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/text_profile_designation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Senior Android Engineer"
+                                android:textColor="@color/text_sub_dark"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@color/border_dark" />
+
+                    <!-- Read-only details list -->
+                    <TextView
+                        android:id="@+id/text_profile_dept"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Department: Product Engineering"
+                        android:textColor="@color/text_main_dark"
+                        android:textSize="13sp"
+                        android:layout_marginBottom="6dp" />
+
+                    <TextView
+                        android:id="@+id/text_profile_mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Mobile: +91 9812345678"
+                        android:textColor="@color/text_main_dark"
+                        android:textSize="13sp"
+                        android:layout_marginBottom="6dp" />
+
+                    <TextView
+                        android:id="@+id/text_profile_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Email: employee@company.com"
+                        android:textColor="@color/text_main_dark"
+                        android:textSize="13sp"
+                        android:layout_marginBottom="6dp" />
+
+                    <TextView
+                        android:id="@+id/text_profile_manager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Manager: Ramesh Sharma"
+                        android:textColor="@color/text_main_dark"
+                        android:textSize="13sp"
+                        android:layout_marginBottom="6dp" />
+
+                    <TextView
+                        android:id="@+id/text_profile_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Joining Date: 2024-03-01"
+                        android:textColor="@color/text_main_dark"
+                        android:textSize="13sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🔒 Contact HR to modify profile information."
+                        android:textColor="@color/text_sub_dark"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Admin Console shortcut (Direct switch) -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_admin_console"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#2D1B4E">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_admin"
+                        app:tint="@color/accent_gold" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Admin Management Console"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Approve requests, view KM logs, analytics."
+                            android:textColor="@color/primary_light"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Security Preferences -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="APP SETTINGS"
+                android:textColor="@color/text_sub_dark"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="8dp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/surface_dark"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Biometric Switch -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Enable Biometric Login"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/switch_biometrics"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/border_dark" />
+
+                    <!-- Theme Select toggle -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="4dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Application Theme"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                        
+                        <RadioGroup
+                            android:id="@+id/theme_radio_group"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal">
+                            <RadioButton
+                                android:id="@+id/radio_theme_system"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="System"
+                                android:textColor="@color/text_main_dark"
+                                android:textSize="13sp" />
+                            <RadioButton
+                                android:id="@+id/radio_theme_light"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Light"
+                                android:textColor="@color/text_main_dark"
+                                android:textSize="13sp" />
+                            <RadioButton
+                                android:id="@+id/radio_theme_dark"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Dark"
+                                android:textColor="@color/text_main_dark"
+                                android:textSize="13sp" />
+                        </RadioGroup>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Support details -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/surface_dark"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Contact Support"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="For app issues or corporate inquiries, reach support team."
+                        android:textColor="@color/text_sub_dark"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btn_contact_support"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="12dp"
+                        android:text="Email Support Desk"
+                        android:textColor="@color/white"
+                        app:cornerRadius="10dp"
+                        android:backgroundTint="@color/border_dark" />
+
+                    <Button
+                        android:id="@+id/btn_whatsapp_support"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="8dp"
+                        android:text="WhatsApp to Developers"
+                        android:textColor="@color/white"
+                        app:cornerRadius="10dp"
+                        android:backgroundTint="@color/whatsapp_green"
+                        app:icon="@drawable/ic_whatsapp"
+                        app:iconTint="@color/white"
+                        app:iconGravity="textStart" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- App Version and Policies details -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:id="@+id/text_app_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HR App v1.0.0 (Build 42) | Release: June 2026"
+                    android:textColor="@color/text_sub_dark"
+                    android:textSize="11sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/btn_policy_privacy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Privacy Policy"
+                        android:textColor="@color/primary_light"
+                        android:textSize="11sp"
+                        android:clickable="true"
+                        android:focusable="true" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="  |  "
+                        android:textColor="@color/text_sub_dark"
+                        android:textSize="11sp" />
+                    <TextView
+                        android:id="@+id/btn_policy_terms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Terms &amp; Conditions"
+                        android:textColor="@color/primary_light"
+                        android:textSize="11sp"
+                        android:clickable="true"
+                        android:focusable="true"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Log out Button -->
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:backgroundTint="@color/danger_red"
+                android:text="Log Out Session"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:cornerRadius="16dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Design By Footer -->
+            <TextView
+                android:id="@+id/text_design_by"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Designed with ♥ by Vaibhav Tormal"
+                android:textSize="11sp"
+                android:letterSpacing="0.06"
+                android:gravity="center"
+                android:textColor="#80FFFFFF"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="88dp"
+            />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

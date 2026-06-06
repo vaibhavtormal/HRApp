@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:padding="16dp">
+
+    <!-- Header Section -->
+    <TextView
+        android:id="@+id/text_leave_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Leave Management"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Balance Indicators Grid (3 Columns) -->
+    <LinearLayout
+        android:id="@+id/layout_leave_balances"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintTop_toBottomOf="@id/text_leave_title">
+
+        <!-- Column 1: Casual Leave -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/surface_dark">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="12dp">
+                <TextView
+                    android:id="@+id/text_bal_casual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12"
+                    android:textColor="@color/primary_light"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Casual"
+                    android:textColor="@color/text_sub_dark"
+                    android:textSize="11sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="of 12 Days"
+                    android:textColor="@color/text_sub_dark"
+                    android:textSize="8sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Column 2: Sick Leave -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/surface_dark">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="12dp">
+                <TextView
+                    android:id="@+id/text_bal_sick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+                    android:textColor="@color/info_blue"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Sick"
+                    android:textColor="@color/text_sub_dark"
+                    android:textSize="11sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="of 10 Days"
+                    android:textColor="@color/text_sub_dark"
+                    android:textSize="8sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Column 3: Earned Leave -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/surface_dark">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="12dp">
+                <TextView
+                    android:id="@+id/text_bal_earned"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15"
+                    android:textColor="@color/accent_gold"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Earned"
+                    android:textColor="@color/text_sub_dark"
+                    android:textSize="11sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="of 15 Days"
+                    android:textColor="@color/text_sub_dark"
+                    android:textSize="8sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <!-- Apply Leave Trigger -->
+    <Button
+        android:id="@+id/btn_apply_leave"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/primary"
+        android:text="Apply For Leave"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:cornerRadius="12dp"
+        app:layout_constraintTop_toBottomOf="@id/layout_leave_balances" />
+
+    <!-- Horizontal Status Filters -->
+    <HorizontalScrollView
+        android:id="@+id/scroll_filter_chips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/btn_apply_leave">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleSelection="true"
+            app:selectionRequired="true"
+            app:chipSpacingHorizontal="8dp">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_filter_all"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All Leaves"
+                android:checked="true"
+                app:chipBackgroundColor="@color/surface_dark"
+                android:textColor="@color/white"
+                app:chipStrokeColor="@color/border_dark" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_filter_pending"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pending"
+                app:chipBackgroundColor="@color/surface_dark"
+                android:textColor="@color/white"
+                app:chipStrokeColor="@color/border_dark" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_filter_approved"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Approved"
+                app:chipBackgroundColor="@color/surface_dark"
+                android:textColor="@color/white"
+                app:chipStrokeColor="@color/border_dark" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_filter_rejected"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rejected"
+                app:chipBackgroundColor="@color/surface_dark"
+                android:textColor="@color/white"
+                app:chipStrokeColor="@color/border_dark" />
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <!-- Date Range Filter Layout -->
+    <LinearLayout
+        android:id="@+id/layout_date_filters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@id/scroll_filter_chips">
+
+        <TextView
+            android:id="@+id/text_filter_start_date"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/badge_role_employee"
+            android:backgroundTint="@color/surface_dark"
+            android:gravity="center"
+            android:text="Start Date 📅"
+            android:textColor="@color/text_main_dark"
+            android:textSize="12sp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/text_filter_end_date"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/badge_role_employee"
+            android:backgroundTint="@color/surface_dark"
+            android:gravity="center"
+            android:text="End Date 📅"
+            android:textColor="@color/text_main_dark"
+            android:textSize="12sp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <ImageButton
+            android:id="@+id/btn_clear_filters"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            app:tint="@color/danger_red"
+            android:visibility="gone"
+            android:contentDescription="Clear Date Filters" />
+    </LinearLayout>
+
+    <!-- History label -->
+    <TextView
+        android:id="@+id/text_history_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="MY LEAVE REQUESTS"
+        android:textColor="@color/text_sub_dark"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.1"
+        app:layout_constraintTop_toBottomOf="@id/layout_date_filters"
+        tools:ignore="MissingConstraints" />
+
+    <!-- History list -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_leaves"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_history_label"
+        tools:listitem="@layout/item_leave_request" />
+
+    <!-- Empty State -->
+    <LinearLayout
+        android:id="@+id/layout_empty_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_history_label">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No leaves applied for yet."
+            android:textColor="@color/text_sub_dark"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

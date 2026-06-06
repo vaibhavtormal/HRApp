@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/surface_dark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_leave_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Casual Leave"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- Status badge -->
+            <TextView
+                android:id="@+id/text_leave_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/badge_role_employee"
+                android:paddingStart="8dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="4dp"
+                android:text="Pending"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_leave_dates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="05 Jun 2026 to 08 Jun 2026 (3 Days)"
+            android:textColor="@color/text_main_dark"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/text_leave_reason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Reason: Going to my home town for family wedding function."
+            android:textColor="@color/text_sub_dark"
+            android:textSize="11sp" />
+
+        <!-- Admin Remark -->
+        <TextView
+            android:id="@+id/text_leave_admin_remark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Remark: Not approved due to shortage"
+            android:textColor="@color/accent_gold"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            android:visibility="gone" />
+
+        <!-- Action buttons (Attachment view, Edit) -->
+        <LinearLayout
+            android:id="@+id/layout_leave_actions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <TextView
+                android:id="@+id/btn_view_attachment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/badge_role_employee"
+                android:backgroundTint="@color/border_dark"
+                android:paddingStart="12dp"
+                android:paddingTop="6dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="6dp"
+                android:text="📎 View Document"
+                android:textColor="@color/primary_light"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginEnd="8dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/btn_edit_leave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/badge_role_employee"
+                android:backgroundTint="@color/border_dark"
+                android:paddingStart="12dp"
+                android:paddingTop="6dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="6dp"
+                android:text="✏️ Edit"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/btn_cancel_leave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/badge_role_employee"
+                android:backgroundTint="#2D1C1C"
+                android:paddingStart="12dp"
+                android:paddingTop="6dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="6dp"
+                android:text="❌ Cancel"
+                android:textColor="@color/danger_red"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginStart="8dp"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

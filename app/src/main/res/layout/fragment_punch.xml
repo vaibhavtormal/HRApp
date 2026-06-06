@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:padding="16dp">
+
+    <!-- Top Navigation Bar -->
+    <LinearLayout
+        android:id="@+id/nav_header"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_history"
+            app:tint="@color/white"
+            android:rotation="180"/>
+
+        <TextView
+            android:id="@+id/text_punch_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Work Logger"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_submit_punch"
+        app:layout_constraintTop_toBottomOf="@id/nav_header">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Vehicle Type Selection (Horizontal Scroll Cards) -->
+            <TextView
+                android:id="@+id/text_select_vehicle_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="SELECT COMMUTE VEHICLE"
+                android:textColor="@color/text_sub_dark"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
+
+            <HorizontalScrollView
+                android:id="@+id/vehicle_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/layout_vehicles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp">
+
+                    <!-- Option 1: No Vehicle -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_no_vehicle"
+                        android:layout_width="100dp"
+                        android:layout_height="80dp"
+                        android:layout_marginEnd="8dp"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="@color/transparent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:background="@drawable/bg_glass_card">
+                            <ImageView
+                                android:id="@+id/img_no_vehicle"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/ic_no_vehicle"
+                                app:tint="@color/text_sub_dark" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="None"
+                                android:textColor="@color/text_main_dark"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Option 2: Company Bike -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_comp_bike"
+                        android:layout_width="100dp"
+                        android:layout_height="80dp"
+                        android:layout_marginEnd="8dp"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="@color/transparent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:background="@drawable/bg_glass_card">
+                            <ImageView
+                                android:id="@+id/img_comp_bike"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/ic_bike"
+                                app:tint="@color/text_sub_dark" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Co. Bike"
+                                android:textColor="@color/text_main_dark"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Option 3: Company Car -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_comp_car"
+                        android:layout_width="100dp"
+                        android:layout_height="80dp"
+                        android:layout_marginEnd="8dp"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="@color/transparent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:background="@drawable/bg_glass_card">
+                            <ImageView
+                                android:id="@+id/img_comp_car"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/ic_car"
+                                app:tint="@color/text_sub_dark" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Co. Car"
+                                android:textColor="@color/text_main_dark"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Option 4: Personal Bike -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_pers_bike"
+                        android:layout_width="100dp"
+                        android:layout_height="80dp"
+                        android:layout_marginEnd="8dp"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="@color/transparent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:background="@drawable/bg_glass_card">
+                            <ImageView
+                                android:id="@+id/img_pers_bike"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/ic_bike"
+                                app:tint="@color/text_sub_dark" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Pers. Bike"
+                                android:textColor="@color/text_main_dark"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Option 5: Personal Car -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_pers_car"
+                        android:layout_width="100dp"
+                        android:layout_height="80dp"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="@color/transparent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:background="@drawable/bg_glass_card">
+                            <ImageView
+                                android:id="@+id/img_pers_car"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/ic_car"
+                                app:tint="@color/text_sub_dark" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Pers. Car"
+                                android:textColor="@color/text_main_dark"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Locked Vehicle Info Card (for Punch Out) -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_locked_vehicle_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="#2D1B4E"
+                app:cardElevation="2dp">
+                <TextView
+                    android:id="@+id/text_locked_vehicle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:text="🔒 Commute vehicle is locked to: Company Bike"
+                    android:textColor="@color/primary_light"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Vehicle Details Form -->
+            <LinearLayout
+                android:id="@+id/layout_vehicle_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VEHICLE IDENTIFICATION"
+                    android:textColor="@color/text_sub_dark"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1" />
+
+                <!-- Opening/Closing Odometer Reading -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_odometer_layout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:hint="Odometer Reading (KM)"
+                    app:hintTextColor="@color/primary_light"
+                    app:boxStrokeColor="@color/border_dark">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_odometer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Show previous Opening Odometer if Punch Out -->
+                <TextView
+                    android:id="@+id/text_opening_odometer_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Opening Reading: -- KM"
+                    android:textColor="@color/primary_light"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <!-- Vehicle Odometer Photo Capture -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="ODOMETER PHOTO LOG"
+                    android:textColor="@color/text_sub_dark"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_photo_upload"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/transparent">
+
+                    <LinearLayout
+                        android:id="@+id/layout_photo_prompt"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:background="@drawable/bg_glass_card">
+                        <ImageView
+                            android:id="@+id/img_photo_icon"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:src="@drawable/ic_camera"
+                            app:tint="@color/text_sub_dark"/>
+                        <TextView
+                            android:id="@+id/text_photo_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Capture Odometer Screen"
+                            android:textColor="@color/text_main_dark"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <!-- Work Summary Field -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="DAILY WORK PLAN"
+                android:textColor="@color/text_sub_dark"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_summary_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="Provide morning tasks list / goal..."
+                app:hintTextColor="@color/primary_light"
+                app:boxStrokeColor="@color/border_dark">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_work_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:gravity="top"
+                    android:lines="3"
+                    android:inputType="textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Submit Button -->
+    <Button
+        android:id="@+id/btn_submit_punch"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/bg_gradient_btn_otp"
+        app:backgroundTint="@null"
+        android:text="SUBMIT INCOMING PUNCH"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:cornerRadius="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/text_design_by" />
+
+    <!-- Design By Footer -->
+    <TextView
+        android:id="@+id/text_design_by"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Designed with ♥ by Vaibhav Tormal"
+        android:textSize="11sp"
+        android:letterSpacing="0.06"
+        android:textColor="#80FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="8dp"
+    />
+
+    <!-- Local Progress Overlay -->
+    <FrameLayout
+        android:id="@+id/progress_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#A60F172A"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/primary_light" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
