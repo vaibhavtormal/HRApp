@@ -21,13 +21,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.FirebaseException
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
-import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
@@ -43,18 +36,6 @@ class LoginFragment : Fragment() {
 
     private var verificationId: String? = null
     private var resendToken: PhoneAuthProvider.ForceResendingToken? = null
-    private var mockOtpCode: String? = null
-
-    private val requestSmsPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted ->
-        val mobile = binding.editLoginMobile.text.toString().trim()
-        if (isGranted) {
-            triggerOtpFallbackFlow(mobile)
-        } else {
-            Toast.makeText(context, "SMS Permission Denied. Cannot send OTP SMS.", Toast.LENGTH_LONG).show()
-        }
-    }
 
     private val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         override fun onVerificationCompleted(credential: PhoneAuthCredential) {
@@ -66,9 +47,9 @@ class LoginFragment : Fragment() {
         }
 
         override fun onVerificationFailed(e: FirebaseException) {
-            authViewModel.setLoginStateError("") // clear loading overlay
-            val mobile = binding.editLoginMobile.text.toString().trim()
-            triggerOtpFallbackFlow(mobile)
+            authViewModel.setLoginStateError(
+                e.localizedMessage ?: "Firebase could not send OTP. Please check Firebase Phone Auth setup and try again."
+            )
         }
 
         override fun onCodeSent(
@@ -77,10 +58,9 @@ class LoginFragment : Fragment() {
         ) {
             verificationId = verId
             resendToken = token
-            mockOtpCode = null
             authViewModel.setOtpSentState(true)
             authViewModel.setLoginStateError("") // clear loading state
-            Toast.makeText(context, "OTP Sent successfully", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Firebase OTP sent successfully", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -219,7 +199,7 @@ class LoginFragment : Fragment() {
         authViewModel.startPhoneAuth.observe(viewLifecycleOwner) { mobile ->
             if (mobile != null) {
                 authViewModel.clearStartPhoneAuth()
-                checkAndRequestSmsPermissionAndTrigger(mobile)
+                startFirebaseVerification(mobile)
             }
         }
     }
@@ -246,13 +226,6 @@ class LoginFragment : Fragment() {
                     // Master OTP bypass verification
                     val mobile = binding.editLoginMobile.text.toString().trim()
                     authViewModel.completeMobileLoginAfterVerificationSuccess(mobile)
-                } else if (verificationId == "MOCK_SESSION") {
-                    if (otp == mockOtpCode) {
-                        val mobile = binding.editLoginMobile.text.toString().trim()
-                        authViewModel.completeMobileLoginAfterVerificationSuccess(mobile)
-                    } else {
-                        Toast.makeText(context, "Invalid OTP code", Toast.LENGTH_SHORT).show()
-                    }
                 } else {
                     val verId = verificationId
                     if (verId == null) {
@@ -274,13 +247,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun startFirebaseVerification(mobile: String) {
-        val formattedNumber = if (mobile.startsWith("+")) {
-            mobile
-        } else if (mobile.length == 10) {
-            "+91$mobile"
-        } else {
-            "+91$mobile"
-        }
+        val formattedNumber = formatPhoneNumberForFirebase(mobile)
 
         authViewModel.setLoginStateLoading()
 
@@ -291,6 +258,16 @@ class LoginFragment : Fragment() {
             .setCallbacks(callbacks)
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
+    }
+
+    private fun formatPhoneNumberForFirebase(mobile: String): String {
+        val compact = mobile.trim().filter { it.isDigit() || it == '+' }
+        return when {
+            compact.startsWith("+") -> compact
+            compact.length == 10 -> "+91$compact"
+            compact.startsWith("91") && compact.length == 12 -> "+$compact"
+            else -> "+91$compact"
+        }
     }
 
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
@@ -347,56 +324,6 @@ class LoginFragment : Fragment() {
             }
             .setNegativeButton("Cancel", null)
             .show()
-    }
-
-    private fun triggerOtpFallbackFlow(mobile: String) {
-        val mockOtp = (100000..999999).random().toString()
-        verificationId = "MOCK_SESSION"
-        mockOtpCode = mockOtp
-        
-        // Send SMS Fallback
-        sendSmsFallback(mobile, mockOtp)
-
-        authViewModel.setOtpSentState(true)
-        authViewModel.setLoginStateError("") // clear loading state
-    }
-
-    private fun sendSmsFallback(mobile: String, otpCode: String) {
-        if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.SEND_SMS)
-            == android.content.pm.PackageManager.PERMISSION_GRANTED
-        ) {
-            try {
-                val smsManager = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                    requireContext().getSystemService(android.telephony.SmsManager::class.java)
-                } else {
-                    @Suppress("DEPRECATION")
-                    android.telephony.SmsManager.getDefault()
-                }
-                val formattedMobile = if (mobile.startsWith("+")) {
-                    mobile
-                } else if (mobile.length == 10) {
-                    "+91$mobile"
-                } else {
-                    "+91$mobile"
-                }
-                val msg = "[HRApp] Your OTP verification code is: $otpCode"
-                smsManager.sendTextMessage(formattedMobile, null, msg, null, null)
-                Toast.makeText(context, "OTP SMS sent to $formattedMobile", Toast.LENGTH_SHORT).show()
-            } catch (e: Exception) {
-                e.printStackTrace()
-                Toast.makeText(context, "SMS send failed: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    private fun checkAndRequestSmsPermissionAndTrigger(mobile: String) {
-        if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.SEND_SMS)
-            == android.content.pm.PackageManager.PERMISSION_GRANTED
-        ) {
-            triggerOtpFallbackFlow(mobile)
-        } else {
-            requestSmsPermissionLauncher.launch(android.Manifest.permission.SEND_SMS)
-        }
     }
 
     override fun onDestroyView() {
